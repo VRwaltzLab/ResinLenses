@@ -38,13 +38,25 @@ As long as the three axises we choose to form our lenses from create an invertib
 when mapping the 3 power basis of those lenses to the constant,sin2theta cos2theta basis.
 Then any spherocylindrical lens will be able to be able to be represented by that three axis basis of cylindrical lenses.
 This follows from the linear algebra we are using because of thin lens and close distance assumption.
+### Claim The matrix is invertible if the axis are distinct angles in [0,180) degrees
+proof: The matrix has ```1/2``` in the top row, and the matrix has ```cos(2*axis)/2``` in the second row for corresponding axis, and likewise ```-sin(2*axis)/2``` in the bottom row.
+If we left multiply by a matrix with 2 in the top left corner and (2, -2i; 2, 2i) as the bottom right 2 by 2 matrix and zeros elsewhere,
+then we get with 1's in the top row, ```e^(i2*axis)``` in the second row and ```e^(-i2*axis)``` in the third row. (apply trigonometric identity)
+This can be right multiplied by a diagonal matrix ```e^(2i*axis)``` to get a permutation of a vandermonde matrix with x_j = e^(2i*axis_j) . (apply exponent addition rules)
+By properties of vandermonde matricies, this matrix is invertible if the x_j's are distinct, which holds iff the angles are distinct.
+So because we multiplied by clearly invertible matricies, the original matrix was invertible if and only if the angles are distinct.
+Warning: if the angles are very close, the matrix might have high condition number and so inverting it might introduce numerical instability.
+This would be bad, because large numbers in the output might break the assumptions of thin lenses, and introduce error.
+Suggestion: use either 0, 45, 90 or 0, 60,120 for angles that are both easy to reproduce and numerically stable.
 
 # Remaining known sources of error:
-## Thickness and Closeness of Lenses:
+### Thickness and Closeness of Lenses:
 We can minimize this source of error via using fresnel like subdividing of the lenses,
 while being careful not to let the discontinuities take up too much space in the visual field.
-## Spherical distortion
+### Spherical distortion
 We can minimize this source of error by using extruded cartesian ovals instead of cylinders.
+### Glasses Error:
+Eye Rotation with static glasses might create errors that occur on the edges of vision.
 # Open Question:
 Is there a remaining notable source of error?
 
