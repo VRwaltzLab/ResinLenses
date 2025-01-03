@@ -2,7 +2,9 @@
 The claim I seek to provide evidence for is:
 any spherocylindrical lens ( or a prescription only with spherical and angled cylindrical components) can be thin-lens approximated by 
 1. 2 cylindrical lenses whose strength and orientation are a function of the prescription.
-2. 3 cylindrical lenses whose strength are a function of the prescription, but the orientations are three sufficiently different angles. 
+2. 3 cylindrical lenses whose strength are a function of the prescription, but the orientations are three sufficiently different angles.
+A Spherical lens can be compound lens approximated by
+3. Many cylindrical lenses
 ### Intuition
 Cylindrical lenses focus to a line; thus, two orthogonal cylindrical lenses should focus to a point.
 ## Formula for Optical Power of Compound Lenses made of thin lenses
@@ -48,6 +50,23 @@ So because we multiplied by clearly invertible matricies, the original matrix wa
 Warning: if the angles are very close, the matrix might have high condition number and so inverting it might introduce numerical instability.
 This would be bad, because large numbers in the output might break the assumptions of thin lenses, and introduce error.
 Suggestion: use either 0, 45, 90 or 0, 60,120 for angles that are both easy to reproduce and numerically stable.
+## More lenses Case :
+In a bad eyesight prescription of -10dpt spherical with an air gap of 1 cm, the compound lens's formula nonlinear term for two orthogonal cylindrical lenses becomes -0.25dpt on the off axis error.
+This is prescription wise notable, and so  might need correcting.
+In a VR game setting with a +22.22dpt spherical (45mm focal length) this will be notable.
+So we need a general construction (which is correct relative to the two formula we are using):
+Lens 1 is a pair of cylindrical singlets, 90 degrees out of phase.
+Lens i is a pair of lenses i-1, 90/2^i degrees out of phase separated by a standard size gap d.
+Note: it is unclear where the d factor should be measured in more compound systems. (probably because the formula isn't intended to be extended too much)
+Claim: the nonspherical term of lens i has frequency 2^(i+1) and power proportional to the base power raised to 2^i times all the distance factors.
+Base case: ``` P_0 = P_base/2+P_base*cos(2theta)/2 ```
+``` P_1 = P_0 + P_0' - d*P_0*P_0' = (P_base/2 + P_base*cos(2theta)/2) + (P_base/2 - P_base*cos(2theta)/2) - d*(P_base/2 - P_base*cos(2theta)/2)*(P_base/2 + P_base*cos(2theta)/2) ```
+``` = P_Base -d* P_base^2/4( 1- cos(2theta)*cos(2theta)) = P_base - d*P_base^2/8*(1 + cos(4theta)) ```
+Inductive step
+using C for all the messy distance and power terms:
+```P_i = P_(i-1) + P_(i-1)' - d*P_(i-1)'*P_(i-1)' = (P + C*cos(2^(i-1)theta) ) + (P - C*cos(2^(i-1)theta) ) - d*(P + C*cos(2^(i-1)theta) )* (P - C*cos(2^(i-1)theta) )```
+```=2P - d*P*P + d*C*C(cos(2^(i-1)theta) )^2 = 2P - d*P*P +d*C*C - d*C*C*sin^2(2^(i-1)theta) = 2P -d*P*P +d*C*C/2 -d*C*C/2*cos(2^i theta) ```
+I believe the asymptotics here follow from the formula, but I do not know if the formula survives this level of compounding lenses.
 
 # Remaining known sources of error:
 ### Thickness and Closeness of Lenses:
