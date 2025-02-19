@@ -8,6 +8,10 @@ The second question is "are these thin lens effects more relevant than any remov
 The one hackaday item I found on printing lenses mentioned a lot of sanding.
 I would suspect that print layers cause significant problems.
 This might be somewhat avoidable if there is no variation between layers like in a cylindrical lens.
+## Test 0: Example Cube
+This cube will let me calculate the index of refraction of the material
+## Test 1: Magnifying glass
+This will directly test Goal A without necessarily providing any end value.
 ## Deliverable 1 : cheap prescription glasses
 3D resin printed glasses service using print on demand as an option, or a printed files option.
 ## Deliverable 2: High fov Google cardboard class headset
